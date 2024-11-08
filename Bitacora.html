@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/stylesMenu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Panel de Administración - University Match</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Header con Logotipo y el botón hamburguesa para móviles -->
+            <header class="col-12 d-flex justify-content-between align-items-center p-3 fondoheader">
+                <div class="logo">
+                    <img src="./assets/img/logo.jpg" alt="Logo" class="img-fluid" style="max-height: 50px;">
+                </div>
+                <div class="header-title text-white">
+                    <h5 class="m-0">University Match - Panel de Administración</h5>
+                </div>
+
+                <!-- Botón de menú hamburguesa para pantallas pequeñas -->
+                <button class="navbar-toggler" type="button" id="menuToggle" aria-expanded="false">
+                    <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+                </button>
+            </header>
+
+            <!-- Sidebar -->
+            <nav id="sidebar" class="col-md-2 d-md-block sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ABCC.html">
+                                <i class="fas fa-cogs"></i> ABCC
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Ordenes de Compra.html">
+                                <i class="fas fa-box"></i> Órdenes de Compra
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Estadisticas.html">
+                                <i class="fas fa-chart-pie"></i> Estadísticas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="Bitacora.html">
+                                <i class="fas fa-book"></i> Bitácora de Movimientos
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main role="main" class="col-md-9 ms-sm-auto col-lg-10 px-4">
+                <div class="container">
+
+                    <!-- Bitácora de Movimientos -->
+                    <div class="row" id="bitacora">
+                        <h2 class="titulo">Bitácora de Movimientos</h2>
+                        <div class="col-md-12">
+
+                            <!-- Barra de búsqueda -->
+                            <input type="text" id="searchInput" class="form-control mb-3" placeholder="Buscar...">
+
+                            <table id="bitacoraTable" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th data-column="usuario">Usuario <i class="fa fa-sort" id="usuarioSortIcon"></i></th>
+                                        <th data-column="campo">Campo Modificado <i class="fa fa-sort" id="campoSortIcon"></i></th>
+                                        <th data-column="tipo">Tipo de Movimiento <i class="fa fa-sort" id="tipoSortIcon"></i></th>
+                                        <th data-column="fecha">Fecha y Hora <i class="fa fa-sort" id="fechaSortIcon"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Registro de Universidad -->
+                                    <tr>
+                                        <td>Admin</td>
+                                        <td>Universidad con ID 1 Registrada</td>
+                                        <td>Alta</td>
+                                        <td>2024-11-01 08:00</td>
+                                    </tr>
+
+                                    <!-- Eliminación de Universidad -->
+                                    <tr>
+                                        <td>Admin</td>
+                                        <td>Universidad con ID 3 Eliminada</td>
+                                        <td>Baja</td>
+                                        <td>2024-11-02 09:15</td>
+                                    </tr>
+
+                                    <!-- Actualización de Universidad -->
+                                    <tr>
+                                        <td>Admin</td>
+                                        <td>Universidad con ID 3 Actualizada</td>
+                                        <td>Modificar</td>
+                                        <td>2024-11-02 10:30</td>
+                                    </tr>
+
+                                    <!-- Registro de Usuario -->
+                                    <tr>
+                                        <td>Admin</td>
+                                        <td>Usuario con ID 1 Registrado</td>
+                                        <td>Alta</td>
+                                        <td>2024-11-03 11:00</td>
+                                    </tr>
+
+                                    <!-- Eliminación de Usuario -->
+                                    <tr>
+                                        <td>Admin</td>
+                                        <td>Usuario con ID 2 Eliminado</td>
+                                        <td>Baja</td>
+                                        <td>2024-11-04 12:45</td>
+                                    </tr>
+
+                                    <!-- Actualización de Usuario -->
+                                    <tr>
+                                        <td>Admin</td>
+                                        <td>Usuario con ID 1 Actualizado</td>
+                                        <td>Modificar</td>
+                                        <td>2024-11-05 13:30</td>
+                                    </tr>
+
+                                    <!-- Registro de Curso -->
+                                    <tr>
+                                        <td>Admin</td>
+                                        <td>Curso con ID 5 Registrado</td>
+                                        <td>Alta</td>
+                                        <td>2024-11-06 14:20</td>
+                                    </tr>
+
+                                    <!-- Actualización de Curso -->
+                                    <tr>
+                                        <td>Admin</td>
+                                        <td>Curso con ID 6 Actualizado</td>
+                                        <td>Modificar</td>
+                                        <td>2024-11-07 15:10</td>
+                                    </tr>
+
+                                    <!-- Registro de Reseña de Universidad -->
+                                    <tr>
+                                        <td>Usuario1</td>
+                                        <td>Reseña de Universidad con ID 2 Registrada</td>
+                                        <td>Alta</td>
+                                        <td>2024-11-08 16:25</td>
+                                    </tr>
+
+                                    <!-- Actualización de Reseña de Universidad -->
+                                    <tr>
+                                        <td>Usuario1</td>
+                                        <td>Reseña de Universidad con ID 2 Actualizada</td>
+                                        <td>Modificar</td>
+                                        <td>2024-11-09 17:00</td>
+                                    </tr>
+
+                                    <!-- Registro de Producto Donado -->
+                                    <tr>
+                                        <td>Admin</td>
+                                        <td>Producto Donado con ID 8 Registrado</td>
+                                        <td>Alta</td>
+                                        <td>2024-11-10 18:10</td>
+                                    </tr>
+
+                                    <!-- Eliminación de Producto Donado -->
+                                    <tr>
+                                        <td>Admin</td>
+                                        <td>Producto Donado con ID 8 Eliminado</td>
+                                        <td>Baja</td>
+                                        <td>2024-11-11 19:05</td>
+                                    </tr>
+
+                                    <!-- Actualización de Producto Donado -->
+                                    <tr>
+                                        <td>Admin</td>
+                                        <td>Producto Donado con ID 8 Actualizado</td>
+                                        <td>Modificar</td>
+                                        <td>2024-11-12 20:15</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!-- Paginación -->
+                            <nav>
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Funcionalidad de búsqueda
+        document.getElementById('searchInput').addEventListener('keyup', function () {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#bitacoraTable tbody tr');
+            rows.forEach(row => {
+                const columns = row.querySelectorAll('td');
+                const matchesSearch = Array.from(columns).some(col => col.textContent.toLowerCase().includes(searchValue));
+                row.style.display = matchesSearch ? '' : 'none';
+            });
+        });
+
+        // Funcionalidad de ordenación de columnas
+        const headers = document.querySelectorAll('#bitacoraTable th');
+        headers.forEach(header => {
+            header.addEventListener('click', function () {
+                const column = header.dataset.column;
+                const icon = header.querySelector('i');
+
+                sortTable(column, icon);
+            });
+        });
+
+        function sortTable(column, icon) {
+            const rows = Array.from(document.querySelectorAll('#bitacoraTable tbody tr'));
+            const index = Array.from(icon.parentNode.parentNode.children).indexOf(icon.parentNode);
+            const isDescending = icon.classList.contains('fa-sort-up');
+
+            rows.sort((rowA, rowB) => {
+                const cellA = rowA.cells[index].textContent;
+                const cellB = rowB.cells[index].textContent;
+
+                if (isDescending) {
+                    return cellA < cellB ? 1 : -1;
+                } else {
+                    return cellA < cellB ? -1 : 1;
+                }
+            });
+
+            rows.forEach(row => {
+                document.querySelector('#bitacoraTable tbody').appendChild(row);
+            });
+
+            // Alterna iconos de ordenación
+            if (isDescending) {
+                icon.classList.remove('fa-sort-up');
+                icon.classList.add('fa-sort-down');
+            } else {
+                icon.classList.remove('fa-sort-down');
+                icon.classList.add('fa-sort-up');
+            }
+        }
+
+        // Paginación (no implementada)
+        document.querySelectorAll('.page-link').forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                alert('Paginación no implementada');
+            });
+        });
+    </script>
+
+<script>
+
+    // Funcionalidad para abrir y cerrar el menú lateral en pantallas pequeñas
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+
+    menuToggle.addEventListener('click', function () {
+        sidebar.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+
+</script>
+</body>
+
+</html>

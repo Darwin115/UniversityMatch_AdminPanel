@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/stylesMenu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Panel de Administración - University Match</title>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.0/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.0/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/stylesABCC.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Header con Logotipo y el botón hamburguesa para móviles -->
+            <header class="col-12 d-flex justify-content-between align-items-center p-3 fondoheader">
+                <div class="logo">
+                    <img src="./assets/img/logo.jpg" alt="Logo" class="img-fluid" style="max-height: 50px;">
+                </div>
+                <div class="header-title text-white">
+                    <h5 class="m-0">University Match - Panel de Administración</h5>
+                </div>
+                <button class="navbar-toggler" type="button" id="menuToggle" aria-expanded="false">
+                    <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+                </button>
+            </header>
+
+            <!-- Sidebar -->
+            <nav id="sidebar" class="col-md-2 d-md-block sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="ABCC.html">
+                                <i class="fas fa-cogs"></i> ABCC
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Ordenes de Compra.html">
+                                <i class="fas fa-box"></i> Órdenes de Compra
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Estadisticas.html">
+                                <i class="fas fa-chart-pie"></i> Estadísticas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Bitacora.html">
+                                <i class="fas fa-book"></i> Bitácora de Movimientos
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content for ABCC -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-4">
+
+
+
+                <div class="container">
+                    <h2 class="titulo">ABCC (Altas, Bajas, Cambios y Consultas)</h2>
+
+
+                    <!----------------------------------------------------------- Usuarios Section ----------------------------------------->
+                    <h4>Usuarios</h4>
+                    <!-- Formulario de Alta de Usuarios -->
+                    <form class="mb-3">
+                        <div class="row g-2">
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <input type="text" class="form-control" placeholder="Nombre" required>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <input type="date" class="form-control" placeholder="Fecha de Cumpleaños" required>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <input type="text" class="form-control" placeholder="Teléfono" required>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <input type="email" class="form-control" placeholder="Email" required>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                                <input type="text" class="form-control" placeholder="Carrera Deseada" required>
+                            </div>
+                            <div
+                                class="col-12 col-sm-6 col-md-4 col-lg-auto d-flex justify-content-center align-items-center">
+                                <button type="submit" class="btn btn-primary w-100">Agregar Usuario</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Tabla de Usuarios con barra de desplazamiento -->
+                    <div class="table-responsive">
+                        <table id="tablaUsuarios" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Fecha de Cumpleaños</th>
+                                    <th>Teléfono</th>
+                                    <th>Email</th>
+                                    <th>Carrera Deseada</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Juan Pérez García</td>
+                                    <td>15/04/2001</td>
+                                    <td>+52 123 456 7890</td>
+                                    <td>juan.perez@example.com</td>
+                                    <td>Ingeniería en Software</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#modalAcciones" data-nombre="Juan Pérez García"
+                                            data-fecha="2001-04-15" data-telefono="+52 123 456 7890"
+                                            data-email="juan.perez@example.com" data-carrera="Ingeniería en Software">
+                                            Actualizar
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#modalConfirmacionEliminar"
+                                            data-usuario="Juan Pérez García">Eliminar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Ana Martínez López</td>
+                                    <td>20/11/1999</td>
+                                    <td>+52 987 654 3210</td>
+                                    <td>ana.martinez@example.com</td>
+                                    <td>Medicina</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#modalAcciones" data-nombre="Ana Martínez López"
+                                            data-fecha="1999-11-20" data-telefono="+52 987 654 3210"
+                                            data-email="ana.martinez@example.com" data-carrera="Medicina">
+                                            Actualizar
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#modalConfirmacionEliminar"
+                                            data-usuario="Ana Martínez López">Eliminar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Carlos González Torres</td>
+                                    <td>03/06/1998</td>
+                                    <td>+52 555 555 5555</td>
+                                    <td>carlos.gonzalez@example.com</td>
+                                    <td>Medicina</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#modalAcciones" data-nombre="Carlos González Torres"
+                                            data-fecha="1998-06-03" data-telefono="+52 555 555 5555"
+                                            data-email="carlos.gonzalez@example.com" data-carrera="Medicina">
+                                            Actualizar
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#modalConfirmacionEliminar"
+                                            data-usuario="Carlos González Torres">Eliminar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Modal de Confirmación de Eliminación -->
+                    <div class="modal fade" id="modalConfirmacionEliminar" tabindex="-1"
+                        aria-labelledby="modalConfirmacionEliminarLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalConfirmacionEliminarLabel">Confirmar Eliminación
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Está seguro de que desea eliminar a <strong id="usuarioEliminar"></strong>?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-danger"
+                                        id="confirmarEliminar">Eliminar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modales para Actualizar -->
+                    <div class="modal fade" id="modalAcciones" tabindex="-1" aria-labelledby="modalAccionesLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalAccionesLabel">Actualizar Información</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="formActualizarUsuario">
+                                        <div class="mb-3">
+                                            <label for="nombreUsuario" class="form-label">Nombre</label>
+                                            <input type="text" class="form-control" id="nombreUsuario" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="fechaUsuario" class="form-label">Fecha de Cumpleaños</label>
+                                            <input type="date" class="form-control" id="fechaUsuario" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="telefonoUsuario" class="form-label">Teléfono</label>
+                                            <input type="tel" class="form-control" id="telefonoUsuario" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="emailUsuario" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="emailUsuario" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="carreraUsuario" class="form-label">Carrera Deseada</label>
+                                            <input type="text" class="form-control" id="carreraUsuario" required>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" id="guardarCambios">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- script de Usuarios -->
+                <script>
+                    $(document).ready(function () {
+                        // Inicialización de DataTable
+                        $('#tablaUsuarios').DataTable();
+
+                        // Modal de Confirmación de Eliminación
+                        $('#modalConfirmacionEliminar').on('show.bs.modal', function (event) {
+                            var button = $(event.relatedTarget);
+                            var usuario = button.data('usuario');
+                            var modal = $(this);
+                            modal.find('#usuarioEliminar').text(usuario);
+                        });
+
+                        // Acción de Eliminar
+                        $('#confirmarEliminar').click(function () {
+                            alert("Usuario eliminado");
+                            $('#modalConfirmacionEliminar').modal('hide');
+                        });
+
+                        // Modal de Actualización de Usuario
+                        $('#modalAcciones').on('show.bs.modal', function (event) {
+                            var button = $(event.relatedTarget);
+                            var nombre = button.data('nombre');
+                            var fecha = button.data('fecha');
+                            var telefono = button.data('telefono');
+                            var email = button.data('email');
+                            var carrera = button.data('carrera');
+                            var modal = $(this);
+
+                            modal.find('#nombreUsuario').val(nombre);
+                            modal.find('#fechaUsuario').val(fecha);
+                            modal.find('#telefonoUsuario').val(telefono);
+                            modal.find('#emailUsuario').val(email);
+                            modal.find('#carreraUsuario').val(carrera);
+                        });
+
+                        // Guardar cambios de usuario
+                        $('#guardarCambios').click(function () {
+                            alert("Cambios guardados");
+                            $('#modalAcciones').modal('hide');
+                        });
+                    });
+
+
+                    // Funcionalidad para abrir y cerrar el menú lateral en pantallas pequeñas
+                    const menuToggle = document.getElementById('menuToggle');
+                    const sidebar = document.getElementById('sidebar');
+
+                    menuToggle.addEventListener('click', function () {
+                        sidebar.classList.toggle('active');
+                        menuToggle.classList.toggle('active');
+                    });
+                </script>
+
+
+                <!----------------------------------------------------------- Universidades Section ---------------------------------------->
+                <h4>Universidades</h4>
+
+                <!-- Formulario de Alta de Universidades -->
+                <form class="mb-3" id="formAltaUniversidad">
+                    <div class="row g-2">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <input type="text" class="form-control" id="nombreUniversidad"
+                                placeholder="Nombre de la Universidad" required>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <input type="text" class="form-control" id="visionUniversidad" placeholder="Visión"
+                                required>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <input type="text" class="form-control" id="misionUniversidad" placeholder="Misión"
+                                required>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <input type="text" class="form-control" id="ubicacionUniversidad" placeholder="Ubicación"
+                                required>
+                        </div>
+                        <div
+                            class="col-12 col-sm-6 col-md-4 col-lg-auto d-flex justify-content-center align-items-center">
+                            <button type="submit" class="btn btn-primary w-100">Agregar Universidad</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Tabla de Universidades con barra de desplazamiento -->
+                <div class="table-responsive">
+                    <table id="tablaUniversidades" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Visión</th>
+                                <th>Misión</th>
+                                <th>Ubicación</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Instituto Tecnológico de Aguascalientes</td>
+                                <td>Formar profesionales competitivos y comprometidos con el desarrollo científico,
+                                    tecnológico y social.</td>
+                                <td>Fomentar la formación integral de los estudiantes mediante la investigación,
+                                    innovación y transferencia tecnológica.</td>
+                                <td>Aguascalientes, México</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalAccionesUniversidad"
+                                        data-nombre="Instituto Tecnológico de Aguascalientes"
+                                        data-vision="Formar profesionales competitivos y comprometidos con el desarrollo científico, tecnológico y social."
+                                        data-mision="Fomentar la formación integral de los estudiantes mediante la investigación, innovación y transferencia tecnológica."
+                                        data-ubicacion="Aguascalientes, México">
+                                        Actualizar
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalConfirmacionEliminarUniversidad"
+                                        data-universidad="Instituto Tecnológico de Aguascalientes">Eliminar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Universidad Autónoma de Aguascalientes</td>
+                                <td>Ser una institución de educación superior de excelencia, generadora de conocimiento
+                                    científico y tecnológico.</td>
+                                <td>Formar profesionistas altamente capacitados, con un compromiso social y humanista,
+                                    para el bienestar de la sociedad.</td>
+                                <td>Aguascalientes, México</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalAccionesUniversidad"
+                                        data-nombre="Universidad Autónoma de Aguascalientes"
+                                        data-vision="Ser una institución de educación superior de excelencia, generadora de conocimiento científico y tecnológico."
+                                        data-mision="Formar profesionistas altamente capacitados, con un compromiso social y humanista, para el bienestar de la sociedad."
+                                        data-ubicacion="Aguascalientes, México">
+                                        Actualizar
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalConfirmacionEliminarUniversidad"
+                                        data-universidad="Universidad Autónoma de Aguascalientes">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Modal de Confirmación de Eliminación de Universidad -->
+                <div class="modal fade" id="modalConfirmacionEliminarUniversidad" tabindex="-1"
+                    aria-labelledby="modalConfirmacionEliminarUniversidadLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalConfirmacionEliminarUniversidadLabel">Confirmar
+                                    Eliminación</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Está seguro de que desea eliminar a <strong id="universidadEliminar"></strong>?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-danger"
+                                    id="confirmarEliminarUniversidad">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal de Actualización de Universidad -->
+                <div class="modal fade" id="modalAccionesUniversidad" tabindex="-1"
+                    aria-labelledby="modalAccionesUniversidadLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalAccionesUniversidadLabel">Actualizar Información de la
+                                    Universidad</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="formActualizarUniversidad">
+                                    <div class="mb-3">
+                                        <label for="nombreUniversidadModal" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="nombreUniversidadModal" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="visionUniversidadModal" class="form-label">Visión</label>
+                                        <input type="text" class="form-control" id="visionUniversidadModal" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="misionUniversidadModal" class="form-label">Misión</label>
+                                        <input type="text" class="form-control" id="misionUniversidadModal" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="ubicacionUniversidadModal" class="form-label">Ubicación</label>
+                                        <input type="text" class="form-control" id="ubicacionUniversidadModal" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary"
+                                    id="guardarCambiosUniversidad">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    $(document).ready(function () {
+                        // Inicialización de DataTable para universidades
+                        $('#tablaUniversidades').DataTable();
+
+                        // Modal de Confirmación de Eliminación de Universidad
+                        $('#modalConfirmacionEliminarUniversidad').on('show.bs.modal', function (event) {
+                            var button = $(event.relatedTarget);
+                            var universidad = button.data('universidad');
+                            var modal = $(this);
+                            modal.find('#universidadEliminar').text(universidad);
+                        });
+
+                        // Acción de Eliminar Universidad
+                        $('#confirmarEliminarUniversidad').click(function () {
+                            alert("Universidad eliminada");
+                            $('#modalConfirmacionEliminarUniversidad').modal('hide');
+                        });
+
+                        // Modal de Actualización de Universidad
+                        $('#modalAccionesUniversidad').on('show.bs.modal', function (event) {
+                            var button = $(event.relatedTarget);
+                            var nombre = button.data('nombre');
+                            var vision = button.data('vision');
+                            var mision = button.data('mision');
+                            var ubicacion = button.data('ubicacion');
+                            var modal = $(this);
+
+                            modal.find('#nombreUniversidadModal').val(nombre);
+                            modal.find('#visionUniversidadModal').val(vision);
+                            modal.find('#misionUniversidadModal').val(mision);
+                            modal.find('#ubicacionUniversidadModal').val(ubicacion);
+                        });
+
+                        // Guardar cambios de universidad
+                        $('#guardarCambiosUniversidad').click(function () {
+                            alert("Cambios guardados");
+                            $('#modalAccionesUniversidad').modal('hide');
+                        });
+                    });
+                </script>
+
+
+
+                <!----------------------------------------------------------- Cursos Section ---------------------------------------->
+                <h4>Cursos</h4>
+
+                <!-- Formulario de Alta de Cursos -->
+                <form class="mb-3" id="formAltaCurso">
+                    <div class="row g-2">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <input type="text" class="form-control" id="nombreCurso" placeholder="Nombre del Curso"
+                                required>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <input type="text" class="form-control" id="categoriaCurso" placeholder="Categoría"
+                                required>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <textarea class="form-control" id="descripcionCurso" placeholder="Descripción del Curso"
+                                rows="3" required></textarea>
+                        </div>
+                        <div
+                            class="col-12 col-sm-6 col-md-4 col-lg-auto d-flex justify-content-center align-items-center">
+                            <button type="submit" class="btn btn-primary w-100">Agregar Curso</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Tabla de Cursos con barra de desplazamiento -->
+                <div class="table-responsive">
+                    <table id="tablaCursos" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Categoría</th>
+                                <th>Descripción</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Curso de Desarrollo Web</td>
+                                <td>Desarrollo de software</td>
+                                <td>Curso completo de desarrollo web desde cero, incluyendo HTML, CSS, JavaScript y
+                                    frameworks.</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalAccionesCurso" data-nombre="Curso de Desarrollo Web"
+                                        data-categoria="Desarrollo de software"
+                                        data-descripcion="Curso completo de desarrollo web desde cero, incluyendo HTML, CSS, JavaScript y frameworks.">
+                                        Actualizar
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalConfirmacionEliminarCurso"
+                                        data-curso="Curso de Desarrollo Web">Eliminar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Curso de Marketing Digital</td>
+                                <td>Marketing</td>
+                                <td>Fundamentos del marketing digital, estrategias de SEO, SEM, redes sociales, y
+                                    analítica web.</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalAccionesCurso" data-nombre="Curso de Marketing Digital"
+                                        data-categoria="Marketing"
+                                        data-descripcion="Fundamentos del marketing digital, estrategias de SEO, SEM, redes sociales, y analítica web.">
+                                        Actualizar
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalConfirmacionEliminarCurso"
+                                        data-curso="Curso de Marketing Digital">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Modal de Confirmación de Eliminación de Curso -->
+                <div class="modal fade" id="modalConfirmacionEliminarCurso" tabindex="-1"
+                    aria-labelledby="modalConfirmacionEliminarCursoLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalConfirmacionEliminarCursoLabel">Confirmar Eliminación
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Está seguro de que desea eliminar el curso <strong id="cursoEliminar"></strong>?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-danger"
+                                    id="confirmarEliminarCurso">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal de Actualización de Curso -->
+                <div class="modal fade" id="modalAccionesCurso" tabindex="-1" aria-labelledby="modalAccionesCursoLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalAccionesCursoLabel">Actualizar Información del Curso
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="formActualizarCurso">
+                                    <div class="mb-3">
+                                        <label for="nombreCursoModal" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="nombreCursoModal" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="categoriaCursoModal" class="form-label">Categoría</label>
+                                        <input type="text" class="form-control" id="categoriaCursoModal" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="descripcionCursoModal" class="form-label">Descripción</label>
+                                        <textarea class="form-control" id="descripcionCursoModal" rows="3"
+                                            required></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary" id="guardarCambiosCurso">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    $(document).ready(function () {
+                        // Inicialización de DataTable para cursos
+                        $('#tablaCursos').DataTable();
+
+                        // Modal de Confirmación de Eliminación de Curso
+                        $('#modalConfirmacionEliminarCurso').on('show.bs.modal', function (event) {
+                            var button = $(event.relatedTarget);
+                            var curso = button.data('curso');
+                            var modal = $(this);
+                            modal.find('#cursoEliminar').text(curso);
+                        });
+
+                        // Acción de Eliminar Curso
+                        $('#confirmarEliminarCurso').click(function () {
+                            alert("Curso eliminado");
+                            $('#modalConfirmacionEliminarCurso').modal('hide');
+                        });
+
+                        // Modal de Actualización de Curso
+                        $('#modalAccionesCurso').on('show.bs.modal', function (event) {
+                            var button = $(event.relatedTarget);
+                            var nombre = button.data('nombre');
+                            var categoria = button.data('categoria');
+                            var descripcion = button.data('descripcion');
+                            var modal = $(this);
+
+                            modal.find('#nombreCursoModal').val(nombre);
+                            modal.find('#categoriaCursoModal').val(categoria);
+                            modal.find('#descripcionCursoModal').val(descripcion);
+                        });
+
+                        // Guardar cambios de curso
+                        $('#guardarCambiosCurso').click(function () {
+                            alert("Cambios guardados");
+                            $('#modalAccionesCurso').modal('hide');
+                        });
+                    });
+                </script>
+
+
+                <!----------------------------------------------------------- Reseñas de Universidades Section ---------------------------------------->
+                <h4>Reseñas de Universidades</h4>
+
+                <!-- Formulario de Alta de Reseña para Universidades -->
+                <form class="mb-3" id="formAltaReseña">
+                    <div class="row g-2">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <input type="text" class="form-control" id="nombreReseña" placeholder="Nombre del Usuario"
+                                required>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <input type="email" class="form-control" id="emailReseña" placeholder="Correo Electrónico"
+                                required>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <textarea class="form-control" id="comentarioReseña"
+                                placeholder="Comentario sobre la universidad" rows="3" required></textarea>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <label for="calificacionReseña" class="form-label">Calificación (de 1 a 5)</label>
+                            <input type="number" class="form-control" id="calificacionReseña" min="1" max="5" required>
+                        </div>
+                        <div
+                            class="col-12 col-sm-6 col-md-4 col-lg-auto d-flex justify-content-center align-items-center">
+                            <button type="submit" class="btn btn-primary w-100">Agregar Reseña</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Tabla de Reseñas con barra de desplazamiento -->
+                <div class="table-responsive">
+                    <table id="tablaReseñas" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Comentario sobre la Universidad</th>
+                                <th>Calificación</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Juan Pérez</td>
+                                <td>juanperez@mail.com</td>
+                                <td>La Universidad Autónoma de Aguascalientes tiene una excelente infraestructura y los
+                                    profesores son muy capacitados.</td>
+                                <td>5</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalAccionesReseña" data-nombre="Juan Pérez"
+                                        data-email="juanperez@mail.com"
+                                        data-comentario="La Universidad Autónoma de Aguascalientes tiene una excelente infraestructura y los profesores son muy capacitados."
+                                        data-calificacion="5">
+                                        Actualizar
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalConfirmacionEliminarReseña"
+                                        data-reseña="Juan Pérez">Eliminar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Ana López</td>
+                                <td>analopez@mail.com</td>
+                                <td>El Instituto Tecnológico de Aguascalientes ofrece una gran variedad de programas,
+                                    pero la interacción con los alumnos podría mejorar.</td>
+                                <td>4</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalAccionesReseña" data-nombre="Ana López"
+                                        data-email="analopez@mail.com"
+                                        data-comentario="El Instituto Tecnológico de Aguascalientes ofrece una gran variedad de programas, pero la interacción con los alumnos podría mejorar."
+                                        data-calificacion="4">
+                                        Actualizar
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalConfirmacionEliminarReseña"
+                                        data-reseña="Ana López">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Modal de Confirmación de Eliminación de Reseña -->
+                <div class="modal fade" id="modalConfirmacionEliminarReseña" tabindex="-1"
+                    aria-labelledby="modalConfirmacionEliminarReseñaLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalConfirmacionEliminarReseñaLabel">Confirmar Eliminación
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Está seguro de que desea eliminar la reseña de <strong id="reseñaEliminar"></strong>?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-danger"
+                                    id="confirmarEliminarReseña">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal de Actualización de Reseña -->
+                <div class="modal fade" id="modalAccionesReseña" tabindex="-1"
+                    aria-labelledby="modalAccionesReseñaLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalAccionesReseñaLabel">Actualizar Información de la
+                                    Reseña</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="formActualizarReseña">
+                                    <div class="mb-3">
+                                        <label for="nombreReseñaModal" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="nombreReseñaModal" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="emailReseñaModal" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="emailReseñaModal" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="comentarioReseñaModal" class="form-label">Comentario sobre la
+                                            Universidad</label>
+                                        <textarea class="form-control" id="comentarioReseñaModal" rows="3"
+                                            required></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="calificacionReseñaModal" class="form-label">Calificación</label>
+                                        <input type="number" class="form-control" id="calificacionReseñaModal" min="1"
+                                            max="5" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary" id="guardarCambiosReseña">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    $(document).ready(function () {
+                        // Inicialización de DataTable para reseñas
+                        $('#tablaReseñas').DataTable();
+
+                        // Modal de Confirmación de Eliminación de Reseña
+                        $('#modalConfirmacionEliminarReseña').on('show.bs.modal', function (event) {
+                            var button = $(event.relatedTarget);
+                            var reseña = button.data('reseña');
+                            var modal = $(this);
+                            modal.find('#reseñaEliminar').text(reseña);
+                        });
+
+                        // Acción de Eliminar Reseña
+                        $('#confirmarEliminarReseña').click(function () {
+                            alert("Reseña eliminada");
+                            $('#modalConfirmacionEliminarReseña').modal('hide');
+                        });
+
+                        // Modal de Actualización de Reseña
+                        $('#modalAccionesReseña').on('show.bs.modal', function (event) {
+                            var button = $(event.relatedTarget);
+                            var nombre = button.data('nombre');
+                            var email = button.data('email');
+                            var comentario = button.data('comentario');
+                            var calificacion = button.data('calificacion');
+                            var modal = $(this);
+
+                            modal.find('#nombreReseñaModal').val(nombre);
+                            modal.find('#emailReseñaModal').val(email);
+                            modal.find('#comentarioReseñaModal').val(comentario);
+                            modal.find('#calificacionReseñaModal').val(calificacion);
+                        });
+
+                        // Guardar cambios de reseña
+                        $('#guardarCambiosReseña').click(function () {
+                            alert("Cambios guardados");
+                            $('#modalAccionesReseña').modal('hide');
+                        });
+                    });
+                </script>
+
+
+                <!----------------------------------------------------------- Test Vocacional Section ---------------------------------------->
+                <h4>Resultados del Test Vocacional</h4>
+
+                <!-- Formulario de Alta de Test Vocacional -->
+                <form class="mb-3" id="formAltaTestVocacional">
+                    <div class="row g-2">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <label for="usuarioId" class="form-label">ID del Usuario</label>
+                            <input type="number" class="form-control" id="usuarioId" placeholder="ID del Usuario"
+                                required>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <label for="universidadId" class="form-label">ID de la Universidad Recomendada</label>
+                            <input type="number" class="form-control" id="universidadId"
+                                placeholder="ID de la Universidad" required>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <label for="carreraId" class="form-label">ID de la Carrera Recomendada</label>
+                            <input type="number" class="form-control" id="carreraId" placeholder="ID de la Carrera"
+                                required>
+                        </div>
+                        <div
+                            class="col-12 col-sm-6 col-md-4 col-lg-auto d-flex justify-content-center align-items-center">
+                            <button type="submit" class="btn btn-primary w-100">Guardar Resultados</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Tabla de Test Vocacional con barra de desplazamiento -->
+                <div class="table-responsive">
+                    <table id="tablaTestVocacional" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>ID Usuario</th>
+                                <th>ID Universidad Recomendada</th>
+                                <th>ID Carrera Recomendada</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>123</td>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalAccionesTestVocacional" data-usuarioid="123"
+                                        data-universidadid="1" data-carreraid="3">
+                                        Actualizar
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalConfirmacionEliminarTestVocacional"
+                                        data-test="1">Eliminar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>456</td>
+                                <td>2</td>
+                                <td>5</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalAccionesTestVocacional" data-usuarioid="456"
+                                        data-universidadid="2" data-carreraid="5">
+                                        Actualizar
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalConfirmacionEliminarTestVocacional"
+                                        data-test="2">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Modal de Confirmación de Eliminación de Test Vocacional -->
+                <div class="modal fade" id="modalConfirmacionEliminarTestVocacional" tabindex="-1"
+                    aria-labelledby="modalConfirmacionEliminarTestVocacionalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalConfirmacionEliminarTestVocacionalLabel">Confirmar
+                                    Eliminación</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Está seguro de que desea eliminar los resultados del test vocacional con ID <strong
+                                    id="testEliminar"></strong>?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-danger"
+                                    id="confirmarEliminarTestVocacional">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal de Actualización de Test Vocacional -->
+                <div class="modal fade" id="modalAccionesTestVocacional" tabindex="-1"
+                    aria-labelledby="modalAccionesTestVocacionalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalAccionesTestVocacionalLabel">Actualizar Resultados del
+                                    Test Vocacional</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="formActualizarTestVocacional">
+                                    <div class="mb-3">
+                                        <label for="usuarioIdModal" class="form-label">ID del Usuario</label>
+                                        <input type="number" class="form-control" id="usuarioIdModal" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="universidadIdModal" class="form-label">ID de la Universidad
+                                            Recomendada</label>
+                                        <input type="number" class="form-control" id="universidadIdModal" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="carreraIdModal" class="form-label">ID de la Carrera
+                                            Recomendada</label>
+                                        <input type="number" class="form-control" id="carreraIdModal" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary"
+                                    id="guardarCambiosTestVocacional">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    $(document).ready(function () {
+                        // Inicialización de DataTable para test vocacional
+                        $('#tablaTestVocacional').DataTable();
+
+                        // Modal de Confirmación de Eliminación de Test Vocacional
+                        $('#modalConfirmacionEliminarTestVocacional').on('show.bs.modal', function (event) {
+                            var button = $(event.relatedTarget);
+                            var test = button.data('test');
+                            var modal = $(this);
+                            modal.find('#testEliminar').text(test);
+                        });
+
+                        // Acción de Eliminar Test Vocacional
+                        $('#confirmarEliminarTestVocacional').click(function () {
+                            alert("Resultado del test vocacional eliminado");
+                            $('#modalConfirmacionEliminarTestVocacional').modal('hide');
+                        });
+
+                        // Modal de Actualización de Test Vocacional
+                        $('#modalAccionesTestVocacional').on('show.bs.modal', function (event) {
+                            var button = $(event.relatedTarget);
+                            var usuarioId = button.data('usuarioid');
+                            var universidadId = button.data('universidadid');
+                            var carreraId = button.data('carreraid');
+                            var modal = $(this);
+
+                            modal.find('#usuarioIdModal').val(usuarioId);
+                            modal.find('#universidadIdModal').val(universidadId);
+                            modal.find('#carreraIdModal').val(carreraId);
+                        });
+
+                        // Guardar cambios de test vocacional
+                        $('#guardarCambiosTestVocacional').click(function () {
+                            alert("Cambios guardados");
+                            $('#modalAccionesTestVocacional').modal('hide');
+                        });
+                    });
+                </script>
+
+
+
+                <!----------------------------------------------------------- Productos Donados Section ----------------------------------------->
+                <h4>Productos Donados</h4>
+
+                <!-- Formulario de Alta de Productos Donados -->
+                <form class="mb-3">
+                    <div class="row g-2">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <input type="text" class="form-control" placeholder="Nombre del Producto" required>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <input type="text" class="form-control" placeholder="Marca" required>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Condición</option>
+                                <option value="Nuevo">Nuevo</option>
+                                <option value="Usado">Usado</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <input type="number" class="form-control" placeholder="Stock" required>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-2">
+                            <input type="text" class="form-control" placeholder="Descripción" required>
+                        </div>
+                        <div
+                            class="col-12 col-sm-6 col-md-4 col-lg-auto d-flex justify-content-center align-items-center">
+                            <button type="submit" class="btn btn-primary w-100">Agregar Producto</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Tabla de Productos Donados con barra de desplazamiento -->
+                <div class="table-responsive">
+                    <table id="tablaProductosDonados" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>User ID</th>
+                                <th>Nombre del Producto</th>
+                                <th>Marca</th>
+                                <th>Condición</th>
+                                <th>Stock</th>
+                                <th>Descripción</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>202</td>
+                                <td>Mouse</td>
+                                <td>Logitech</td>
+                                <td>Usado</td>
+                                <td>5</td>
+                                <td>Mouse inalámbrico, modelo M185</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalActualizarProducto" data-nombre="Mouse"
+                                        data-marca="Logitech" data-condicion="Usado" data-stock="5"
+                                        data-descripcion="Mouse inalámbrico, modelo M185">
+                                        Actualizar
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalConfirmarEliminarProducto"
+                                        data-producto="Mouse">Eliminar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>203</td>
+                                <td>Laptop</td>
+                                <td>HP</td>
+                                <td>Nuevo</td>
+                                <td>3</td>
+                                <td>16GB RAM, 512GB SSD, Core i7</td>
+                                <td>
+                                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalActualizarProducto" data-nombre="Laptop" data-marca="HP"
+                                        data-condicion="Nuevo" data-stock="3"
+                                        data-descripcion="16GB RAM, 512GB SSD, Core i7">
+                                        Actualizar
+                                    </button>
+                                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modalConfirmarEliminarProducto"
+                                        data-producto="Laptop">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Modal de Confirmación de Eliminación -->
+                <div class="modal fade" id="modalConfirmarEliminarProducto" tabindex="-1"
+                    aria-labelledby="modalConfirmarEliminarProductoLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalConfirmarEliminarProductoLabel">Confirmar Eliminación
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Está seguro de que desea eliminar el producto <strong id="productoEliminar"></strong>?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-danger"
+                                    id="confirmarEliminarProducto">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal para Actualizar Productos -->
+                <div class="modal fade" id="modalActualizarProducto" tabindex="-1"
+                    aria-labelledby="modalActualizarProductoLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalActualizarProductoLabel">Actualizar Producto</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="formActualizarProducto">
+                                    <div class="mb-3">
+                                        <label for="nombreProducto" class="form-label">Nombre del Producto</label>
+                                        <input type="text" class="form-control" id="nombreProducto" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="marcaProducto" class="form-label">Marca</label>
+                                        <input type="text" class="form-control" id="marcaProducto" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="condicionProducto" class="form-label">Condición</label>
+                                        <select class="form-control" id="condicionProducto" required>
+                                            <option value="" disabled selected>Seleccione una opción</option>
+                                            <option value="Nuevo">Nuevo</option>
+                                            <option value="Usado">Usado</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="stockProducto" class="form-label">Stock</label>
+                                        <input type="number" class="form-control" id="stockProducto" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="descripcionProducto" class="form-label">Descripción</label>
+                                        <textarea class="form-control" id="descripcionProducto" rows="3"
+                                            required></textarea>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary" id="guardarCambiosProducto">Guardar
+                                    Cambios</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Script de Productos Donados -->
+                <script>
+                    $(document).ready(function () {
+                        // Inicialización de DataTable
+                        $('#tablaProductosDonados').DataTable();
+
+                        // Modal de Confirmación de Eliminación
+                        $('#modalConfirmarEliminarProducto').on('show.bs.modal', function (event) {
+                            var button = $(event.relatedTarget);
+                            var producto = button.data('producto');
+                            var modal = $(this);
+                            modal.find('#productoEliminar').text(producto);
+                        });
+
+                        // Acción de Eliminar
+                        $('#confirmarEliminarProducto').click(function () {
+                            alert("Producto eliminado");
+                            $('#modalConfirmarEliminarProducto').modal('hide');
+                        });
+
+                        // Modal de Actualización de Producto
+                        $('#modalActualizarProducto').on('show.bs.modal', function (event) {
+                            var button = $(event.relatedTarget);
+                            var nombre = button.data('nombre');
+                            var marca = button.data('marca');
+                            var condicion = button.data('condicion');
+                            var stock = button.data('stock');
+                            var descripcion = button.data('descripcion');
+                            var modal = $(this);
+
+                            modal.find('#nombreProducto').val(nombre);
+                            modal.find('#marcaProducto').val(marca);
+                            modal.find('#condicionProducto').val(condicion);
+                            modal.find('#stockProducto').val(stock);
+                            modal.find('#descripcionProducto').val(descripcion);
+                        });
+
+                        // Guardar cambios de producto
+                        $('#guardarCambiosProducto').click(function () {
+                            alert("Cambios guardados");
+                            $('#modalActualizarProducto').modal('hide');
+                        });
+                    });
+                </script>
+
+
+
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

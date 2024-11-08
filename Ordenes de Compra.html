@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/ordenes.css">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/stylesMenu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Panel de Administración - University Match</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Header con Logotipo y el botón hamburguesa para móviles -->
+            <header class="col-12 d-flex justify-content-between align-items-center p-3 fondoheader">
+                <div class="logo">
+                    <img src="./assets/img/logo.jpg" alt="Logo" class="img-fluid" style="max-height: 50px;">
+                </div>
+                <div class="header-title text-white">
+                    <h5 class="m-0">University Match - Panel de Administración</h5>
+                </div>
+
+                <!-- Botón de menú hamburguesa para pantallas pequeñas -->
+                <button class="navbar-toggler" type="button" id="menuToggle" aria-expanded="false">
+                    <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+                </button>
+            </header>
+
+            <!-- Sidebar -->
+            <nav id="sidebar" class="col-md-2 d-md-block sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ABCC.html">
+                                <i class="fas fa-cogs"></i> ABCC
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="Ordenes de Compra.html">
+                                <i class="fas fa-box"></i> Órdenes de Compra
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Estadisticas.html">
+                                <i class="fas fa-chart-pie"></i> Estadísticas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Bitacora.html">
+                                <i class="fas fa-book"></i> Bitácora de Movimientos
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main role="main" class="col-md-9 ms-sm-auto col-lg-10 px-4">
+                <div class="container">
+                    <!-- Sección Órdenes de Compra -->
+                    <div class="row mb-4" id="ordenes">
+                        <h2 class="titulo">Órdenes de Adquisición de Productos Donados</h2>
+                        <div class="col-md-12">
+                            <!-- Filtros por Fecha y Estatus -->
+                            <div class="d-flex justify-content-between mb-3">
+                                <div class="input-group w-50 me-2">
+                                    <span class="input-group-text">Fecha</span>
+                                    <input type="date" class="form-control" id="filtroFecha">
+                                </div>
+                                <div class="input-group w-50">
+                                    <span class="input-group-text">Estatus</span>
+                                    <select class="form-select" id="filtroEstatus">
+                                        <option value="">Todos</option>
+                                        <option value="pendiente">Pendiente</option>
+                                        <option value="aprobada">Aprobada</option>
+                                        <option value="cancelada">Cancelada</option>
+                                        <option value="no_autorizada">No Autorizada</option>
+                                        <option value="enviada">Enviada</option>
+                                        <option value="entregada">Entregada</option>
+                                        <option value="devuelta">Devuelta</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Tabla de Órdenes de Adquisición -->
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID Orden</th>
+                                            <th>Producto</th>
+                                            <th>Usuario</th>
+                                            <th>Fecha</th>
+                                            <th>Estatus</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>101</td>
+                                            <td>Mouse</td>
+                                            <td>202</td>
+                                            <td>2024-11-05</td>
+                                            <td>
+                                                <select class="form-select" aria-label="Estatus">
+                                                    <option value="pendiente">Pendiente</option>
+                                                    <option value="aprobada" selected>Aprobada</option>
+                                                    <option value="cancelada">Cancelada</option>
+                                                    <option value="no_autorizada">No Autorizada</option>
+                                                    <option value="enviada">Enviada</option>
+                                                    <option value="entregada">Entregada</option>
+                                                    <option value="devuelta">Devuelta</option>
+                                                </select>
+                                            </td>
+                                            <td><button class="btn btn-warning">Editar</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>102</td>
+                                            <td>Laptop</td>
+                                            <td>203</td>
+                                            <td>2024-11-06</td>
+                                            <td>
+                                                <select class="form-select" aria-label="Estatus">
+                                                    <option value="pendiente" selected>Pendiente</option>
+                                                    <option value="aprobada">Aprobada</option>
+                                                    <option value="cancelada">Cancelada</option>
+                                                    <option value="no_autorizada">No Autorizada</option>
+                                                    <option value="enviada">Enviada</option>
+                                                    <option value="entregada">Entregada</option>
+                                                    <option value="devuelta">Devuelta</option>
+                                                </select>
+                                            </td>
+                                            <td><button class="btn btn-warning">Editar</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sección Reseñas de Producto -->
+                    <div class="row" id="resenas">
+                        <h2>Revisión de Reseñas de Producto</h2>
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID Reseña</th>
+                                            <th>Producto</th>
+                                            <th>Usuario</th>
+                                            <th>Calificación</th>
+                                            <th>Comentario</th>
+                                            <th>Fecha</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>201</td>
+                                            <td>Producto C</td>
+                                            <td>Usuario3</td>
+                                            <td>5/5</td>
+                                            <td>Excelente calidad.</td>
+                                            <td>2024-11-04</td>
+                                        </tr>
+                                        <tr>
+                                            <td>202</td>
+                                            <td>Producto D</td>
+                                            <td>Usuario4</td>
+                                            <td>3/5</td>
+                                            <td>Esperaba más.</td>
+                                            <td>2024-11-05</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Scripts -->
+            <script>
+                // Filtrado de órdenes
+                const filtroFecha = document.getElementById('filtroFecha');
+                const filtroEstatus = document.getElementById('filtroEstatus');
+                const filasTabla = document.querySelectorAll('tbody tr');
+
+                function aplicarFiltros() {
+                    const fechaFiltro = filtroFecha.value;
+                    const estatusFiltro = filtroEstatus.value.toLowerCase();
+
+                    filasTabla.forEach(fila => {
+                        const fecha = fila.children[3].textContent.trim();
+                        const estatus = fila.children[4].querySelector('select').value.toLowerCase();
+                        const cumpleFecha = !fechaFiltro || fecha === fechaFiltro;
+                        const cumpleEstatus = !estatusFiltro || estatus === estatusFiltro;
+
+                        fila.style.display = (cumpleFecha && cumpleEstatus) ? '' : 'none';
+                    });
+                }
+
+                filtroFecha.addEventListener('input', aplicarFiltros);
+                filtroEstatus.addEventListener('change', aplicarFiltros);
+            </script>
+
+             <!-- Funcionalidad para abrir y cerrar el menú lateral en pantallas pequeñas -->
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        menuToggle.addEventListener('click', function () {
+            sidebar.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    </script>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                // Configuración del gráfico de barras
+                const ctx = document.getElementById('graficoBarras');
+                if (ctx) {
+                    new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Producto A', 'Producto B', 'Producto C', 'Producto D'],
+                            datasets: [{
+                                label: 'Ventas',
+                                data: [15, 10, 25, 30],
+                                backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                }
+            </script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+            <script src="./assets/js/scripts.js"></script>
+        </div>
+    </div>
+</body>
+
+</html>

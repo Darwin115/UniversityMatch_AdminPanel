@@ -1,0 +1,320 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/styles.css"> <!-- Referencia al nuevo archivo de estilos -->
+    <link rel="stylesheet" href="./assets/css/stylesMenu.css">
+    <link rel="stylesheet" href="./assets/css/dash.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Panel de Administración - University Match</title>
+    <!-- Agregar Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Header con Logotipo y el botón hamburguesa para móviles -->
+            <header class="col-12 d-flex justify-content-between align-items-center p-3 fondoheader">
+                <div class="logo">
+                    <img src="./assets/img/logo.jpg" alt="Logo" class="img-fluid" style="max-height: 50px;">
+                </div>
+                <div class="header-title text-white">
+                    <h5 class="m-0">University Match - Panel de Administración</h5>
+                </div>
+
+                <!-- Botón de menú hamburguesa para pantallas pequeñas -->
+                <button class="navbar-toggler" type="button" id="menuToggle" aria-expanded="false">
+                    <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+                </button>
+            </header>
+
+            <!-- Sidebar -->
+            <nav id="sidebar" class="col-md-2 d-md-block sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="dashboard.html">
+                                <i class="fas fa-tachometer-alt"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ABCC.html">
+                                <i class="fas fa-cogs"></i> ABCC
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Ordenes de Compra.html">
+                                <i class="fas fa-box"></i> Órdenes de Compra
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Estadisticas.html">
+                                <i class="fas fa-chart-pie"></i> Estadísticas
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Bitacora.html">
+                                <i class="fas fa-book"></i> Bitácora de Movimientos
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <main role="main" class="col-md-9 ms-sm-auto col-lg-10 px-4">
+                <div class="container">
+                    <div class="row" id="dashboard">
+                        <h2 class="titulo">Dashboard</h2>
+                        <p>Visión general de las métricas clave del negocio de University Match, que proporciona información sobre el desempeño de las donaciones, usuarios, visitas y universidades registradas.</p>
+
+                        <!-- Dashboard Cards -->
+                        <div class="row">
+                            <!-- Últimas Órdenes de Donaciones -->
+                            <div class="col-md-4 mb-3">
+                                <div class="card shadow-sm">
+                                    <div class="card-header">
+                                        <h5 class="card-title">Últimas Órdenes de Donaciones</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul>
+                                            <li><strong>Orden #001</strong> - 3 productos donados (Donante: Usuario123)</li>
+                                            <li><strong>Orden #002</strong> - 2 productos donados (Donante: Usuario456)</li>
+                                            <li><strong>Orden #003</strong> - 5 productos donados (Donante: Usuario789)</li>
+                                        </ul>
+                                        <p><a href="Ordenes de Compra.html" class="btn btn-primary">Ver todas las órdenes</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Estadísticas de Productos Donados -->
+                            <div class="col-md-4 mb-3">
+                                <div class="card shadow-sm">
+                                    <div class="card-header">
+                                        <h5 class="card-title">Estadísticas de Productos Donados</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>Productos Donados Este Mes:</strong> 120 productos</p>
+                                        <p><strong>Total de Productos Donados:</strong> 500 productos</p>
+                                        <p><strong>Productos Más Donados:</strong> Ropa (150 productos)</p>
+                                        <p><strong>Productos Menos Donados:</strong> Electrónica (20 productos)</p>
+                                        <p><a href="Estadisticas.html" class="btn btn-primary">Ver detalles</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Estadísticas de Usuarios Registrados -->
+                            <div class="col-md-4 mb-3">
+                                <div class="card shadow-sm">
+                                    <div class="card-header">
+                                        <h5 class="card-title">Estadísticas de Usuarios Registrados</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>Usuarios Registrados Este Mes:</strong> 150 usuarios</p>
+                                        <p><strong>Total de Usuarios Registrados:</strong> 1000 usuarios</p>
+                                        <p><strong>Usuarios Activos:</strong> 800 usuarios</p>
+                                        <p><strong>Usuarios Inactivos:</strong> 200 usuarios</p>
+                                        <p><a href="ABCC.html" class="btn btn-primary">Ver gestión de usuarios</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Número de Visitas a la Web -->
+                            <div class="col-md-4 mb-3">
+                                <div class="card shadow-sm">
+                                    <div class="card-header">
+                                        <h5 class="card-title">Número de Visitas a la Web</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>Visitas de Este Mes:</strong> 10,000 visitas</p>
+                                        <p><strong>Visitas Totales:</strong> 50,000 visitas</p>
+                                        <p><strong>Promedio de Visitas Diarias:</strong> 300 visitas</p>
+                                        <p><a href="Estadisticas.html" class="btn btn-primary">Ver análisis completo</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ingresos Mensuales -->
+                            <div class="col-md-4 mb-3">
+                                <div class="card shadow-sm">
+                                    <div class="card-header">
+                                        <h5 class="card-title">Ingresos Mensuales</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><strong>Ingresos de Este Mes:</strong> $2,500</p>
+                                        <p><strong>Ingresos Totales:</strong> $15,000</p>
+                                        <p><strong>Promedio de Ingresos Diarios:</strong> $80</p>
+                                        <p><a href="Estadisticas.html" class="btn btn-primary">Ver más detalles financieros</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Universidades Registradas (más protagonismo) -->
+                            <div class="col-md-12 mb-3">
+                                <div class="card shadow-sm">
+                                    <div class="card-header bg-success text-white">
+                                        <h5 class="card-title">Universidades Registradas</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="text-center">Universidades en Aguascalientes</h5>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Universidad</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Universidad Autónoma de Aguascalientes</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Instituto Tecnológico de Aguascalientes</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Universidad Politécnica de Aguascalientes</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Universidad Tecnológica de Aguascalientes</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Centro de Estudios Universitarios</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gráfica de Usuarios Registrados -->
+                        <div class="col-md-12 mb-3">
+                            <div class="card shadow-sm">
+                                <div class="card-header">
+                                    <h5 class="card-title">Gráfica de Usuarios Registrados</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="usersChart"></canvas>
+                                    <script>
+                                        var ctx = document.getElementById('usersChart').getContext('2d');
+                                        var usersChart = new Chart(ctx, {
+                                            type: 'line',
+                                            data: {
+                                                labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+                                                datasets: [{
+                                                    label: 'Usuarios Registrados',
+                                                    data: [100, 150, 200, 300, 400, 500],
+                                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                                    borderColor: 'rgba(75, 192, 192, 1)',
+                                                    borderWidth: 1
+                                                }]
+                                            },
+                                            options: {
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: true
+                                                    }
+                                                }
+                                            }
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gráfica de Productos Donados -->
+                        <div class="col-md-12 mb-3">
+                            <div class="card shadow-sm">
+                                <div class="card-header">
+                                    <h5 class="card-title">Gráfica de Productos Donados</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="donationsChart"></canvas>
+                                    <script>
+                                        var ctx = document.getElementById('donationsChart').getContext('2d');
+                                        var donationsChart = new Chart(ctx, {
+                                            type: 'bar',
+                                            data: {
+                                                labels: ['Ropa', 'Electrónica', 'Medicinas', 'Alimentos', 'Otros'],
+                                                datasets: [{
+                                                    label: 'Productos Donados',
+                                                    data: [120, 50, 30, 90, 20],
+                                                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                                                    borderColor: 'rgba(153, 102, 255, 1)',
+                                                    borderWidth: 1
+                                                }]
+                                            },
+                                            options: {
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: true
+                                                    }
+                                                }
+                                            }
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gráfica de Popularidad de Universidades -->
+                        <div class="col-md-12 mb-3">
+                            <div class="card shadow-sm">
+                                <div class="card-header">
+                                    <h5 class="card-title">Gráfica de Popularidad de Universidades</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="popularityChart"></canvas>
+                                    <script>
+                                        var ctx = document.getElementById('popularityChart').getContext('2d');
+                                        var popularityChart = new Chart(ctx, {
+                                            type: 'bar',
+                                            data: {
+                                                labels: ['Universidad Autónoma de Aguascalientes', 'Instituto Tecnológico de Aguascalientes', 'Universidad Politécnica de Aguascalientes', 'Universidad Tecnológica de Aguascalientes', 'Centro de Estudios Universitarios'],
+                                                datasets: [{
+                                                    label: 'Popularidad (Reseñas de Usuarios)',
+                                                    data: [4.5, 4.2, 3.8, 3.9, 4.1],
+                                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                                    borderColor: 'rgba(75, 192, 192, 1)',
+                                                    borderWidth: 1
+                                                }]
+                                            },
+                                            options: {
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: true,
+                                                        max: 5
+                                                    }
+                                                }
+                                            }
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+
+        // Funcionalidad para abrir y cerrar el menú lateral en pantallas pequeñas
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+    
+        menuToggle.addEventListener('click', function () {
+            sidebar.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    
+    </script>
+
+    <script src="bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
